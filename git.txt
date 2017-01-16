@@ -1,0 +1,206 @@
+BOUCETTA
+Manal
+EI SE 3
+					OPI TP4
+				Git, Makefile et Script
+
+Exercice 1
+
+1) pour nous identifier sur Git, on tape les lignes de commande suivantes :
+git config --global user.name usernamemanou
+git config --global user.email manal75018@hotmail.fr
+git config --global core.editor gedit
+git config --color.ui auto
+git config --global alias.lola 'log --graph --decorate --oneline --all'
+
+
+2) on tape la commande "cd Bureau/OPI_TP4 mkdir git" pour créer le dossier git. On tape la commande "cd git" puis "git init" pour créer le répertoire git. Le répertoire git a été créé, et le compilateur nous dit : "Dépôt Git vide initialisé dans /home/3672690/Bureau/OPI_TP4/git/.git/".
+
+
+3) Pour créer un fichier : on tape "touch fichier.txt"
+
+
+4) On tape la commande "git status". Le compilateur nous répond ceci :
+# Sur la branche master
+#
+# Validation initiale
+#
+# Fichiers non suivis:
+#   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+#
+#	fichier.txt
+#
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+-> on foit que le fichier "fichier.txt" n'est pas en suivi de version par Git.
+
+5) On tape la commande "git add fichier.txt". On tape ensuite la commande "git status", voilà ce que le compilateur affiche : 
+
+# Sur la branche master
+#git push -u origin master
+# Validation initiale
+#
+# Modifications qui seront validées :
+#   (utilisez "git rm --cached <fichier>..." pour désindexer)
+#
+#	nouveau fichier : fichier.txt
+#
+
+-> le fichier "fichier.txt" est maintenant en suivi de version par Git.
+
+6) on tape la commande "git commit -m"Un superMessage".
+
+7) Le statut du repertoire est :
+"git status" nous affiche "# Sur la branche master
+rien à valider, la copie de travail est propre"
+
+8) "git log -p" :
+commit e57d8b72c2b535909d92bc35f13ba3d37cea599d
+Author: usernamemanou <manal75018@hotmail.fr>
+Date:   Mon Jan 16 10:07:20 2017 +0100
+
+    Un superMessage
+
+diff --git a/fichier.txt b/fichier.txt
+new file mode 100644
+index 0000000..e69de29
+
+-> notre pseudo et notre adresse mail précédemment rentrées lors de la question 1) ainsi que le message "Un superMessage" est affiché. 
+
+9) On modifie le fichier "ficher.txt" en l'ouvrant dans gedit et en écrivant "un deuxieme super message". On tape ensuite la commande "git diff", voilà ce qu'affiche le terminal :
+diff --git a/fichier.txt b/fichier.txt
+index e69de29..d9013d2 100644
+--- a/fichier.txt
++++ b/fichier.txt
+@@ -0,0 +1 @@
++un deuxieme super message
+
+-> ainsi, le changement du contenu du fichier a été pris en compte
+
+10) Sur github.com, on crée un nouveau repository nommé "premier_repository". On tape les commandes : 
+"git remote add origin https://github.com/usernamemanou/premier_repository.git
+git push -u origin master"
+
+11) Sur le dépôt du serveur github, on voit que le fichier "ficher.txt" figure dans notre repository "premier_repository".
+
+12) On modifie le "fichier.txt" dans un éditeur de texte.
+On tape "git add fichier.txt
+git commit -m "un troisieme super message
+git diff
+git push"
+
+-> dans le depot, on voit que le fichier a bien été modifié comme on l'a fait dans notre répertoire.
+
+
+Exercice 2
+
+1) On va dans un autre répertoire que git (dans "OPI_TP4") :
+"cd .."
+
+2) on tape 
+"git clone https://github.com/PolytechUPMC-IGM/PremierPas.git". Voilà ce que nous affiche le terminal :
+"Clonage dans 'PremierPas'...
+remote: Counting objects: 406, done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 406 (delta 5), reused 0 (delta 0), pack-reused 390
+Réception d'objets: 100% (406/406), 45.41 KiB | 0 bytes/s, fait.
+Résolution des deltas: 100% (179/179), fait.
+Vérification de la connectivité... fait.
+"
+-> le répertoire "PremiersPas" a été créé dans le répertoire "OPI_TP4"
+
+
+3) on tape :
+"cd PremierPas
+git status". Voilà ce qu'affiche le terminal :
+"# Sur la branche master
+# Votre branche est à jour avec 'origin/master'.
+#
+rien à valider, la copie de travail est propre
+"
+
+4) On tape "touch usernamemanou.txt"
+
+5) "git add usernamemanou.txt
+git commit -m "message"
+git diff
+git push".
+
+6) Lors du push, voilà ce qui est affiché :
+To https://github.com/PolytechUPMC-IGM/PremierPas.git
+ ! [rejected]        master -> master (fetch first)
+error: impossible de pousser des références vers 'https://github.com/PolytechUPMC-IGM/PremierPas.git'
+astuce: Les mises à jour ont été rejetées car la branche distante contient du travail que
+astuce: vous n'avez pas en local. Ceci est généralement causé par un autre dépôt poussé
+astuce: vers la même référence. Vous pourriez intégrer d'abord les changements distants
+astuce: (par exemple 'git pull ...') avant de pousser à nouveau.
+astuce: Voir la 'Note à propos des avances rapides' dans 'git push --help' pour plus d'information.
+
+-> on n'est pas en local, donc on n'a pas pu enregistrer les modifications du fichier usernamemanou.txt
+
+7) On tape "git pull" : 
+" remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 3), reused 6 (delta 3), pack-reused 0
+Dépaquetage des objets: 100% (6/6), fait.
+Depuis https://github.com/PolytechUPMC-IGM/PremierPas
+   a514cec..ce1eee9  master     -> origin/master
+Merge made by the 'recursive' strategy.
+ Pinana.txt | 0
+ hichem.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Pinana.txt
+ create mode 100644 hichem.txt "
+
+8) on retape maintenant "git push" :
+Décompte des objets: 4, fait.
+Delta compression using up to 8 threads.
+Compression des objets: 100% (4/4), fait.
+Écriture des objets: 100% (4/4), 533 bytes | 0 bytes/s, fait.
+Total 4 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local objects.
+To https://github.com/PolytechUPMC-IGM/PremierPas.git
+   ce1eee9..a9e5a96  master -> master
+
+-> maintenant qu'on est en local, le contenu du fichier "usernamemanou.txt" a pu être ajouté sur le dépôt PolytechUPMC-IGM/PremierPas
+ 
+9) après avoir modifié les fichiers, on tape "git add usernamemanou.txt" 
+
+10) "git add usernamemanou.txt"
+on fait ensuite "git commit -m
+git pull
+git push "
+
+11) voilà ce qui est affiché :
+ ! [rejected]        master -> master (fetch first)
+error: impossible de pousser des références vers 'https://github.com/PolytechUPMC-IGM/PremierPas.git'
+astuce: Les mises à jour ont été rejetées car la branche distante contient du travail que
+astuce: vous n'avez pas en local. Ceci est généralement causé par un autre dépôt poussé
+astuce: vers la même référence. Vous pourriez intégrer d'abord les changements distants
+astuce: (par exemple 'git pull ...') avant de pousser à nouveau.
+astuce: Voir la 'Note à propos des avances rapides' dans 'git push --help' pour plus d'information.
+
+12) on refait les memes commandes que dans la question 10)
+
+13) voila ce que la commande "git lola" affiche :
+*   c7937b8 (HEAD, origin/master, origin/HEAD, master) Merge branch 'master' of https://github.com/PolytechUPMC-IGM/PremierPas
+|\  
+| *   29b38be Merge branch 'master' of https://github.com/PolytechUPMC-IGM/PremierPas
+| |\  
+| | *   a9e5a96 Merge branch 'master' of https://github.com/PolytechUPMC-IGM/PremierPas
+| | |\  
+| | * | c23d7af message
+| * | | 4c97741 Fichiers modifiés
+| | |/  
+| |/|   
+| * |   ce1eee9 Merge branch 'master' of https://github.com/PolytechUPMC-IGM/PremierPas
+| |\ \  
+| * | | fc749f5 Fichier ajouté
+| | |/  
+| |/|   
+* | |   ff0208d Merge branch 'master' of https://github.com/PolytechUPMC-IGM/PremierPas
+|\ \ \  
+| | |/  
+:
+
+

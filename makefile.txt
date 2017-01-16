@@ -1,0 +1,10 @@
+BOUCETTA
+Manal
+EI SE 3
+
+			OPI : TP4 : Makfile
+
+Exercice 3
+1) CC = gcc, CFLAGS = -O3 -Wall -funroll-loops -s et LDLIBS = -lpng
+
+2) et 3) voir fichier Makefile

@@ -6,4 +6,25 @@ EI SE 3
 
 Exercice 4
 
-1) 
+1) Avec la commande "gcc -g hello.c -o hello", on compile avec l'option de debugage "-g".
+
+2) On voit ce que le programme exécute, la quantité de mémoire allouée ainsi que le nombre d'erreurs.
+
+3) On peut voir le nombre d'allocations et le nombre de free, ainsi que le nombre d'octets qui ont été réservés en mémoire. On voit également qu'il n'y a pas de fuite mémoire possible, car cette dernière a bien été désallouée.
+
+ 
+4) Dans le terminal, on tape les commandes :
+" gcc -g mem.c -o mem
+valgrind ./mem "
+
+5) L'erreur se trouve a la ligne 6. Le type de l'erreur est renseigné (ici c'est un segfault), ainsi que la raison pour laquelle elle a été commise.
+
+6) Il n'y a pas d'allocation memoire pour p.
+
+7) On a précédemment utilisé l'instruction "free", donc on a désalloué la mémoire pour le tableau, mais on manipule ensuite le tableau, ce qui produit une erreur.
+
+8) On a une fuite memoire (de 16 octets) car on n'a pas le même nombre de malloc que de free (un malloc en trop).
+
+9) D'apres valgrind, la ligne 11 est la ligne fautive.
+
+10) il faut rajouter l'instruction "free(p)", ainsi que faire pointer p vers NULL ("p = NULL") pour éviter d'éventuelles fuites mémoires.
